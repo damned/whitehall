@@ -121,18 +121,28 @@ module Admin::EditionActionsHelper
         CaseStudy,
         StatisticalDataSet,
       ]
-      edition_types
-        .select { |edition_type| can?(:create, edition_type) }
-        .map { |edition_type|
-          tag.li(class: "masthead-menu-item") do
-            link_to(
-              edition_type.model_name.human,
-              polymorphic_path([:new, :admin, edition_type.name.underscore.to_sym]),
-              title: "Create #{edition_type.model_name.human.titleize}",
-              role: "menuitem",
-            )
-          end
-        }
+      creation_options = edition_types
+                .select { |edition_type| can?(:create, edition_type) }
+                .map { |edition_type|
+                  tag.li(class: "masthead-menu-item") do
+                    link_to(
+                      edition_type.model_name.human,
+                      polymorphic_path([:new, :admin, edition_type.name.underscore.to_sym]),
+                      title: "Create #{edition_type.model_name.human.titleize}",
+                      role: "menuitem",
+                    )
+                  end
+                }
+      remote_option = tag.li(class: "masthead-menu-item") do
+        link_to(
+          'remote',
+          '/government/admin/documents/new',
+          title: "Create that thur remote type",
+          role: "menuitem",
+          )
+      end
+      creation_options.append remote_option
+      creation_options
         .join
         .html_safe
     end

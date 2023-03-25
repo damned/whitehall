@@ -539,6 +539,9 @@ GEM
     rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails-reverse-proxy (0.12.0)
+      actionpack
+      addressable
     rails_translation_manager (1.6.3)
       activesupport
       csv (~> 3.2)
@@ -814,6 +817,7 @@ DEPENDENCIES
   rails (= 7.0.4.2)
   rails-controller-testing
   rails-i18n
+  rails-reverse-proxy
   rails_translation_manager
   rake
   record_tag_helper

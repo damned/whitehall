@@ -28,5 +28,6 @@
 /failures
 /node_modules
 /yarn-error.log
+.idea/
 
 spec/reports/pacts

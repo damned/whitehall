@@ -61,6 +61,7 @@ gem "uglifier"
 gem "validates_email_format_of"
 gem "view_component"
 gem "whenever", require: false
+gem "rails-reverse-proxy"
 
 group :development, :test do
   gem "pact", require: false

@@ -61,6 +61,8 @@ Whitehall::Application.routes.draw do
     end
   end
 
+  match 'documents/*path' => 'admin/content_item_editor#do_proxy_editor_actions', via: [:get, :post, :put, :patch, :delete]
+
   # Routes rendered by Whitehall to the public under the /government scope (specified in lib/whitehall.rb under the `router_prefix` method)
   scope Whitehall.router_prefix, shallow_path: Whitehall.router_prefix do
     root to: redirect("/", prefix: ""), via: :get, as: :main_root
@@ -311,6 +313,7 @@ Whitehall::Application.routes.draw do
         resources :speeches, except: [:index]
         resources :statistical_data_sets, path: "statistical-data-sets", except: [:index]
         resources :detailed_guides, path: "detailed-guides", except: [:index]
+        resources :content_item_editor, path: "documents", except: [:index]
         resources :people do
           resources :translations, controller: "person_translations"
           resources :historical_accounts
